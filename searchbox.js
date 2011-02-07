@@ -7,7 +7,7 @@
   $.extend(true, $.searchbox, {
     settings: {
       url: '/search',
-      param: 'query',
+      form: 'form'
       dom_id: '#results',
       delay: 100,
       loading_css: '#loading'
@@ -27,7 +27,7 @@
     
     process: function(terms) {
       var path = $.searchbox.settings.url.split('?'),
-        query = [$.searchbox.settings.param, '=', terms].join(''),
+        query = $($.searchbox.settings.form).serialize(), 
         base = path[0], params = path[1], query_string = query
       
       if (params) query_string = [params.replace('&amp;', '&'), query].join('&')
